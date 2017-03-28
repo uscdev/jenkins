@@ -34,6 +34,16 @@ RUN apt-get update
 RUN apt-get -y install docker-engine
 
 RUN usermod -aG docker jenkins
+RUN cd /usr/local/ && curl -L -O http://dl.google.com/android/android-sdk_r24.4.1-linux.tgz && tar xf android-sdk_r24.4.1-linux.tgz
+
+ENV ANDROID_HOME /usr/local/android-sdk-linux
+ENV ANDROID_SDK /usr/local/android-sdk-linux
+ENV ANDROID_SDK_COMPONENTS tools,platform-tools,android-23,build-tools-23.0.2,sys-img-armeabi-v7a-android-23,extra-android-m2repository,extra-google-m2repository
+
+RUN echo y | /usr/local/android-sdk-linux/tools/android update sdk --filter tools --no-ui --force -a
+RUN echo y | /usr/local/android-sdk-linux/tools/android update sdk --filter platform-tools --no-ui --force -a
+RUN echo y | /usr/local/android-sdk-linux/tools/android update sdk --no-ui --all --filter "${ANDROID_SDK_COMPONENTS}" --force
+
 
 USER jenkins
 ENV DOCKER_HOST tcp://dcorley-swarm-mgr01.usc.edu:2376
