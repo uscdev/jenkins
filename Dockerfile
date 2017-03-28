@@ -10,7 +10,7 @@ antisamy-markup-formatter ws-cleanup ant matrix-auth credentials-binding gradle 
 build-timeout docker-build-publish docker-custom-build-environment docker-traceability docker-workflow \
 docker-plugin docker-build-step saml \
 file-operations nexus-artifact-uploader pipeline-utility-steps pipeline-model-definition \
-dsljob envinject
+jobdsl envinject
 
 USER root
 RUN apt-get update
