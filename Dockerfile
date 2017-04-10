@@ -2,6 +2,10 @@
 
 FROM jenkins:latest
 
+USER root
+RUN apt-get update && apt-get -y upgrade
+USER jenkins
+
 RUN /usr/local/bin/install-plugins.sh \
 mailer cloudbees-folder timestamper workflow-aggregator ldap subversion \
 dependency-check-jenkins-plugin git-client git \
@@ -13,8 +17,6 @@ file-operations nexus-artifact-uploader pipeline-utility-steps pipeline-model-de
 job-dsl envinject simple-theme config-file-provider
 
 USER root
-RUN apt-get update && apt-get -y upgrade
-
 RUN apt-get install -y --no-install-recommends \
      apt-transport-https \
      ca-certificates \
