@@ -1,48 +1,46 @@
+# Create Jenkins image with USC plugins and utilities such as docker
+
 FROM jenkins:latest
 
-# COPY plugins.txt /usr/share/jenkins/plugins.txt
-# RUN /usr/local/bin/plugins.sh /usr/share/jenkins/plugins.txt
+USER root
+RUN apt-get update && apt-get -y upgrade
+USER jenkins
+
 RUN /usr/local/bin/install-plugins.sh \
 mailer cloudbees-folder timestamper workflow-aggregator ldap subversion \
 dependency-check-jenkins-plugin git-client git \
 github-branch-source github-organization-folder ssh-slaves pam-auth email-ext \
 antisamy-markup-formatter ws-cleanup ant matrix-auth credentials-binding gradle pipeline-stage-view \
-build-timeout docker-build-publish docker-custom-build-environment docker-traceability docker-workflow \
-docker-plugin docker-build-step saml \
+build-timeout docker-build-publish docker-custom-build-environment \
+docker-traceability docker-workflow docker-plugin docker-build-step saml \
 file-operations nexus-artifact-uploader pipeline-utility-steps pipeline-model-definition \
-job-dsl envinject simple-theme
+job-dsl envinject simple-theme config-file-provider
 
 USER root
-RUN apt-get update
-#      && apt-get -y upgrade
-
 RUN apt-get install -y --no-install-recommends \
      apt-transport-https \
      ca-certificates \
      curl \
      software-properties-common
 
-RUN curl -fsSL https://apt.dockerproject.org/gpg | apt-key add -
-
-RUN add-apt-repository \
+RUN curl -fsSL https://apt.dockerproject.org/gpg | apt-key add - && \
+add-apt-repository \
        "deb https://apt.dockerproject.org/repo/ \
        debian-$(lsb_release -cs) \
-       main"
-
-RUN apt-get update
-
-RUN apt-get -y install docker-engine
-
-RUN usermod -aG docker jenkins
-RUN cd /usr/local/ && curl -L -O http://dl.google.com/android/android-sdk_r24.4.1-linux.tgz && tar xf android-sdk_r24.4.1-linux.tgz
+       main" && \
+apt-get update && apt-get -y install docker-engine && \
+usermod -aG docker jenkins && \
+cd /usr/local/ && \
+curl -L -O http://dl.google.com/android/android-sdk_r24.4.1-linux.tgz && \
+tar xf android-sdk_r24.4.1-linux.tgz
 
 ENV ANDROID_HOME /usr/local/android-sdk-linux
 ENV ANDROID_SDK /usr/local/android-sdk-linux
 ENV ANDROID_SDK_COMPONENTS tools,platform-tools,android-23,build-tools-23.0.2,sys-img-armeabi-v7a-android-23,extra-android-m2repository,extra-google-m2repository
 
-RUN echo y | /usr/local/android-sdk-linux/tools/android update sdk --filter tools --no-ui --force -a
-RUN echo y | /usr/local/android-sdk-linux/tools/android update sdk --filter platform-tools --no-ui --force -a
-RUN echo y | /usr/local/android-sdk-linux/tools/android update sdk --no-ui --all --filter "${ANDROID_SDK_COMPONENTS}" --force
+RUN echo y | /usr/local/android-sdk-linux/tools/android update sdk --filter tools --no-ui --force -a && \
+echo y | /usr/local/android-sdk-linux/tools/android update sdk --filter platform-tools --no-ui --force -a && \
+echo y | /usr/local/android-sdk-linux/tools/android update sdk --no-ui --all --filter "${ANDROID_SDK_COMPONENTS}" --force
 
 RUN mkdir -p ${ANDROID_HOME}/licenses
 RUN echo -e "8933bad161af4178b1185d1a37fbf41ea5269c55\c" > ${ANDROID_HOME}/licenses/android-sdk-license
