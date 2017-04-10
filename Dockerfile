@@ -44,6 +44,10 @@ RUN echo y | /usr/local/android-sdk-linux/tools/android update sdk --filter tool
 RUN echo y | /usr/local/android-sdk-linux/tools/android update sdk --filter platform-tools --no-ui --force -a
 RUN echo y | /usr/local/android-sdk-linux/tools/android update sdk --no-ui --all --filter "${ANDROID_SDK_COMPONENTS}" --force
 
+RUN mkdir -p ${ANDROID_HOME}/licenses
+RUN echo -e "8933bad161af4178b1185d1a37fbf41ea5269c55\c" > ${ANDROID_HOME}/licenses/android-sdk-license
+RUN echo -e "79120722343a6f314e0719f863036c702b0e6b2a\n84831b9409646a918e30573bab4c9c91346d8abd\c" > ${ANDROID_HOME}/licenses/android-sdk-preview-license
+RUN echo -e "8403addf88ab4874007e1c1e80a0025bf2550a37\c" > ${ANDROID_HOME}/licenses/intel-android-sysimage-license
 
 USER jenkins
 ENV DOCKER_HOST tcp://dcorley-swarm-mgr01.usc.edu:2376

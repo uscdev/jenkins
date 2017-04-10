@@ -1,0 +1,38 @@
+version: '3.1'
+services:
+  jenkins:
+    image: uscits/jenkins
+    ports:
+      - 8080:8080
+      - 50000:50000
+    environment:
+      - JAVA_OPTS=-Duser.timezone=${TZ}
+    networks:
+      web-bus:
+    volumes:
+      - ${USC_LOCAL_DIR}/jenkins:/var/jenkins_home
+    secrets:
+      - ca.pem
+      - cert.pem
+      - key.pem
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 1
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints:
+          - node.hostname==${NODE01}
+networks:
+  web-bus:
+    external:
+      name: web-bus
+secrets:
+  ca.pem:
+    external: true
+  cert.pem:
+    external: true
+  key.pem:
+    external: true
