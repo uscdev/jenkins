@@ -56,3 +56,7 @@ USER jenkins
 ENV DOCKER_HOST tcp://dcorley-swarm-mgr01.usc.edu:2376
 ENV DOCKER_TLS_VERIFY=1
 ENV DOCKER_CERT_PATH=/run/secrets
+
+ENV AWS_ACCESS_KEY_ID `cat /run/secrets/aws_access_key_id_secret`
+ENV AWS_SECRET_ACCESS_KEY `cat /run/secrets/aws_secret_access_key_secret`
+ENV AWS_DEFAULT_REGION us-west-1
