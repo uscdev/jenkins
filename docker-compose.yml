@@ -17,6 +17,7 @@ services:
       - key.pem
       - aws_access_key_id_secret
       - aws_secret_access_key_secret
+      - its-bsa-prod-us-west-1-key-pair.pem
     deploy:
       replicas: 1
       update_config:
@@ -41,4 +42,6 @@ secrets:
   aws_access_key_id_secret:
     external: true
   aws_secret_access_key_secret:
+    external: true
+  its-bsa-prod-us-west-1-key-pair.pem:
     external: true
