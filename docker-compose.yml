@@ -15,8 +15,6 @@ services:
       - ca.pem
       - cert.pem
       - key.pem
-      - aws_access_key_id_secret
-      - aws_secret_access_key_secret
       - its-bsa-prod-us-west-1-key-pair.pem
     deploy:
       replicas: 1
@@ -38,10 +36,6 @@ secrets:
   cert.pem:
     external: true
   key.pem:
-    external: true
-  aws_access_key_id_secret:
-    external: true
-  aws_secret_access_key_secret:
     external: true
   its-bsa-prod-us-west-1-key-pair.pem:
     external: true
