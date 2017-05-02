@@ -11,7 +11,7 @@ mailer cloudbees-folder timestamper workflow-aggregator ldap subversion \
 dependency-check-jenkins-plugin git-client git \
 github-branch-source github-organization-folder ssh-slaves pam-auth email-ext \
 antisamy-markup-formatter ws-cleanup ant matrix-auth credentials-binding gradle pipeline-stage-view \
-build-timeout docker-build-publish docker-custom-build-environment \
+build-timeout docker-build-publish docker-custom-build-environment google-play-android-publisher \
 docker-traceability docker-workflow docker-plugin docker-build-step saml \
 file-operations nexus-artifact-uploader pipeline-utility-steps pipeline-model-definition \
 job-dsl envinject simple-theme config-file-provider
