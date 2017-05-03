@@ -15,6 +15,7 @@ services:
       - ca.pem
       - cert.pem
       - key.pem
+      - its-bsa-prod-us-west-1-key-pair.pem
     deploy:
       replicas: 1
       update_config:
@@ -35,4 +36,6 @@ secrets:
   cert.pem:
     external: true
   key.pem:
+    external: true
+  its-bsa-prod-us-west-1-key-pair.pem:
     external: true
