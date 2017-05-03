@@ -4,6 +4,7 @@ FROM jenkins:latest
 
 USER root
 RUN apt-get update && apt-get -y upgrade
+RUN mv /etc/localtime /etc/localtime-old && ln -sf /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
 USER jenkins
 
 RUN /usr/local/bin/install-plugins.sh \
