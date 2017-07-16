@@ -31,7 +31,10 @@ RUN apt-get install -y --no-install-recommends \
      python \
      python-pip \
      curl \
-     software-properties-common
+     software-properties-common \
+     packagekit \
+     build-essential \
+     python-setuptools
 
 RUN pip install awscli
 
