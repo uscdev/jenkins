@@ -21,8 +21,8 @@ docker-plugin docker-build-step saml \
 file-operations nexus-artifact-uploader \
 pipeline-utility-steps \
 pipeline-model-definition \
-job-dsl envinject simple-theme config-file-provider
-# email-ext
+job-dsl envinject simple-theme config-file-provider \
+email-ext
 
 USER root
 RUN apt-get install -y --no-install-recommends \
