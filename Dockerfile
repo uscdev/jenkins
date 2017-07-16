@@ -8,11 +8,11 @@ RUN mv /etc/localtime /etc/localtime-old && ln -sf /usr/share/zoneinfo/America/L
 USER jenkins
 
 RUN /usr/local/bin/install-plugins.sh \
-cloudbees-folder timestamper \
+mailer cloudbees-folder timestamper \
 workflow-aggregator \
 ldap subversion \
 dependency-check-jenkins-plugin git-client git \
-github-branch-source github-organization-folder ssh-slaves pam-auth email-ext \
+github-branch-source github-organization-folder ssh-slaves pam-auth \
 antisamy-markup-formatter ws-cleanup ant matrix-auth credentials-binding gradle pipeline-stage-view \
 build-timeout docker-build-publish docker-custom-build-environment google-play-android-publisher \
 docker-traceability \
@@ -22,6 +22,7 @@ file-operations nexus-artifact-uploader \
 pipeline-utility-steps \
 pipeline-model-definition \
 job-dsl envinject simple-theme config-file-provider
+# email-ext
 
 USER root
 RUN apt-get install -y --no-install-recommends \
