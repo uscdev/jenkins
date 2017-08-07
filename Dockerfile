@@ -1,6 +1,6 @@
 # Create Jenkins image with USC plugins and utilities such as docker
 
-FROM jenkins/jenkins
+FROM jenkinsci/jenkins:2.54
 
 USER root
 RUN apt-get update && apt-get -y upgrade
