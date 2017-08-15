@@ -1,6 +1,6 @@
 # Create Jenkins image with USC plugins and utilities such as docker
 
-FROM jenkinsci/jenkins:2.54
+FROM jenkins/jenkins
 
 USER root
 RUN apt-get update && apt-get -y upgrade
@@ -9,20 +9,23 @@ USER jenkins
 
 RUN /usr/local/bin/install-plugins.sh \
 mailer cloudbees-folder timestamper \
-workflow-aggregator \
 ldap subversion \
 dependency-check-jenkins-plugin git-client git \
 github-branch-source github-organization-folder ssh-slaves pam-auth \
-antisamy-markup-formatter ws-cleanup ant matrix-auth credentials-binding gradle pipeline-stage-view \
+ws-cleanup ant credentials-binding gradle \
 build-timeout docker-build-publish docker-custom-build-environment google-play-android-publisher \
 docker-traceability \
 docker-workflow \
 docker-plugin docker-build-step saml \
 file-operations nexus-artifact-uploader \
+job-dsl envinject simple-theme \
+email-ext \
+matrix-auth matrix-project antisamy-markup-formatter script-security \
 pipeline-utility-steps \
 pipeline-model-definition \
-job-dsl envinject simple-theme config-file-provider \
-email-ext
+pipeline-stage-view \
+config-file-provider \
+workflow-aggregator
 
 USER root
 RUN apt-get install -y --no-install-recommends \
