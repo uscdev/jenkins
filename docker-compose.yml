@@ -13,6 +13,8 @@ services:
       - proxy
     volumes:
       - jenkins-data:/var/jenkins_home
+    secrets:
+      - saml-key.jks
     deploy:
       replicas: 1
       labels:
