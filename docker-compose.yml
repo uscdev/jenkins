@@ -15,6 +15,7 @@ services:
       - ca.pem
       - cert.pem
       - key.pem
+      - saml-key.jks
     deploy:
       replicas: 1
       labels:
@@ -43,4 +44,5 @@ secrets:
     external: true
   key.pem:
     external: true
-
+  saml-key.jks:
+    external: true
