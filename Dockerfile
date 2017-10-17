@@ -8,7 +8,7 @@ RUN mv /etc/localtime /etc/localtime-old && ln -sf /usr/share/zoneinfo/America/L
 USER jenkins
 
 RUN /usr/local/bin/install-plugins.sh \
-mailer timestamper \
+mailer cloudbees-folder timestamper \
 ldap subversion \
 dependency-check-jenkins-plugin git-client git \
 github-branch-source github-organization-folder ssh-slaves pam-auth \
