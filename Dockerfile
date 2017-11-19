@@ -41,9 +41,9 @@ RUN apt-get install -y --no-install-recommends \
 
 RUN pip install awscli
 
-RUN curl -fsSL https://download.docker.com/linux/$(. /etc/os-release; echo "$ID")/gpg | sudo apt-key add -
+RUN curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add - && \
 RUN sudo add-apt-repository \
-   "deb [arch=amd64] https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") \
+   "deb [arch=amd64] https://download.docker.com/linux/debian \
    $(lsb_release -cs) \
    stable" && \
 apt-get update && apt-get -y install docker-ce && \
