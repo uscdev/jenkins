@@ -32,6 +32,7 @@ RUN apt-get install -y --no-install-recommends \
      apt-transport-https \
      ca-certificates \
      python \
+     python-software-properties \
      python-pip \
      curl \
      software-properties-common \
@@ -41,12 +42,12 @@ RUN apt-get install -y --no-install-recommends \
 
 RUN pip install awscli
 
-RUN curl -fsSL https://apt.dockerproject.org/gpg | apt-key add - && \
-add-apt-repository \
-       "deb https://apt.dockerproject.org/repo/ \
-       debian-$(lsb_release -cs) \
-       main" && \
-apt-get update && apt-get -y install docker-engine && \
+RUN curl -fsSL https://download.docker.com/linux/$(. /etc/os-release; echo "$ID")/gpg | sudo apt-key add - && \
+sudo add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") \
+   $(lsb_release -cs) \
+   stable" && \
+apt-get update && apt-get -y install docker-ce && \
 usermod -aG docker jenkins && \
 cd /usr/local/ && \
 curl -L -O http://dl.google.com/android/android-sdk_r24.4.1-linux.tgz && \
