@@ -32,7 +32,6 @@ RUN apt-get install -y --no-install-recommends \
      apt-transport-https \
      ca-certificates \
      python \
-     python-software-properties \
      python-pip \
      curl \
      software-properties-common \
