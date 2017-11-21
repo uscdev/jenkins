@@ -31,24 +31,24 @@ USER root
 RUN apt-get install -y --no-install-recommends \
      apt-transport-https \
      ca-certificates \
-     python \
-     python-software-properties \
-     python-pip \
      curl \
+     gnupg2 \
      software-properties-common \
+     python \
+     python-pip \
      packagekit \
      build-essential \
      python-setuptools
 
 RUN pip install awscli
 
-RUN curl -fsSL https://download.docker.com/linux/$(. /etc/os-release; echo "$ID")/gpg | sudo apt-key add - && \
-sudo add-apt-repository \
-   "deb [arch=amd64] https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") \
-   $(lsb_release -cs) \
-   stable" && \
-apt-get update && apt-get -y install docker-ce && \
-usermod -aG docker jenkins && \
+RUN curl -fsSL https://download.docker.com/linux/$(. /etc/os-release; echo "$ID")/gpg | apt-key add - && \
+add-apt-repository \
+       "deb [arch=amd64] https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") \
+       $(lsb_release -cs) \
+       stable" && \
+apt-get update && apt-get -y install docker-ce
+RUN usermod -aG docker jenkins && \
 cd /usr/local/ && \
 curl -L -O http://dl.google.com/android/android-sdk_r24.4.1-linux.tgz && \
 tar xf android-sdk_r24.4.1-linux.tgz
