@@ -15,6 +15,7 @@ services:
       - jenkins-data:/var/jenkins_home
     secrets:
       - saml-key.jks
+      - swarm-key-pair.pem
     deploy:
       replicas: 1
       labels:
@@ -38,4 +39,6 @@ volumes:
     external: true
 secrets:
   saml-key.jks:
+    external: true
+  swarm-key-pair.pem:
     external: true
