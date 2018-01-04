@@ -74,8 +74,5 @@ ssh -4 -NL localhost:2374:/var/run/docker.sock -i /run/secrets/its-bsa-dev-us-we
 fi' /usr/local/bin/jenkins.sh
 
 USER jenkins
-ENV DOCKER_HOST tcp://dcorley-swarm-mgr01.usc.edu:2376
-ENV DOCKER_TLS_VERIFY=1
-ENV DOCKER_CERT_PATH=/run/secrets
 
 ENV AWS_DEFAULT_REGION us-west-1
