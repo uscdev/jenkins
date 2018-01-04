@@ -10,6 +10,9 @@ services:
     environment:
       - JAVA_OPTS=-Duser.timezone=${TZ}
       - DOCKER_SWARM_MANAGER=manager.swarm.usc.edu
+      - DOCKER_HOST=tcp://dcorley-swarm-mgr01.usc.edu:2376
+      - DOCKER_TLS_VERIFY=1
+      - DOCKER_CERT_PATH=/run/secrets
     networks:
       - proxy
     volumes:
