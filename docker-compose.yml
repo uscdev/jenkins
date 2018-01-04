@@ -16,6 +16,7 @@ services:
     secrets:
       - saml-key.jks
       - swarm-key-pair.pem
+      - its-bsa-dev-us-west-2-key-pair.pem
     deploy:
       replicas: 1
       labels:
@@ -41,4 +42,6 @@ secrets:
   saml-key.jks:
     external: true
   swarm-key-pair.pem:
+    external: true
+  its-bsa-dev-us-west-2-key-pair.pem:
     external: true
