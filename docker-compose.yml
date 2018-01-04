@@ -9,6 +9,7 @@ services:
       - saml-key.jks
     environment:
       - JAVA_OPTS=-Duser.timezone=${TZ}
+      - DOCKER_SWARM_MANAGER=manager.swarm.usc.edu
     networks:
       - proxy
     volumes:
