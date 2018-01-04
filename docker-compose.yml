@@ -10,7 +10,7 @@ services:
     environment:
       - JAVA_OPTS=-Duser.timezone=${TZ}
       - DOCKER_SWARM_MANAGER=manager.swarm.usc.edu
-      - DOCKER_HOST=:2375
+      - DOCKER_HOST=:2374
     networks:
       - proxy
     volumes:
