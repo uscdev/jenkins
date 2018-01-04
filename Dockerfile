@@ -25,7 +25,9 @@ pipeline-utility-steps \
 pipeline-model-definition \
 pipeline-stage-view \
 config-file-provider \
-workflow-aggregator
+workflow-aggregator \
+publish-over-ssh \
+swarm
 
 USER root
 RUN apt-get install -y --no-install-recommends \
