@@ -27,7 +27,8 @@ pipeline-stage-view \
 config-file-provider \
 workflow-aggregator \
 publish-over-ssh \
-swarm
+swarm \
+amazon-ecr
 
 USER root
 RUN apt-get install -y --no-install-recommends \
