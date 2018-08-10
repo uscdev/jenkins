@@ -28,8 +28,7 @@ config-file-provider \
 workflow-aggregator \
 publish-over-ssh \
 swarm \
-amazon-ecr \
-credentials-binding
+amazon-ecr
 
 USER root
 RUN apt-get install -y --no-install-recommends \
