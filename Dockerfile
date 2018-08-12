@@ -18,7 +18,7 @@ docker-traceability \
 docker-workflow \
 docker-plugin docker-build-step saml \
 file-operations nexus-artifact-uploader \
-job-dsl envinject simple-theme \
+job-dsl simple-theme \
 email-ext \
 matrix-auth matrix-project antisamy-markup-formatter script-security \
 pipeline-utility-steps \
