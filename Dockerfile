@@ -28,7 +28,8 @@ config-file-provider \
 workflow-aggregator \
 publish-over-ssh \
 swarm \
-amazon-ecr
+amazon-ecr \
+jquery
 
 USER root
 RUN apt-get install -y --no-install-recommends \
@@ -41,7 +42,8 @@ RUN apt-get install -y --no-install-recommends \
      python-pip \
      packagekit \
      build-essential \
-     python-setuptools
+     python-setuptools \
+     jq
 
 RUN pip install awscli
 
