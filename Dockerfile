@@ -29,7 +29,8 @@ workflow-aggregator \
 publish-over-ssh \
 swarm \
 amazon-ecr \
-jquery
+jquery \
+envinject 
 
 USER root
 RUN apt-get install -y --no-install-recommends \
