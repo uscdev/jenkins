@@ -18,7 +18,7 @@ docker-traceability \
 docker-workflow \
 docker-plugin docker-build-step saml \
 file-operations nexus-artifact-uploader \
-job-dsl envinject simple-theme \
+job-dsl simple-theme \
 email-ext \
 matrix-auth matrix-project antisamy-markup-formatter script-security \
 pipeline-utility-steps \
@@ -27,7 +27,10 @@ pipeline-stage-view \
 config-file-provider \
 workflow-aggregator \
 publish-over-ssh \
-swarm
+swarm \
+amazon-ecr \
+jquery \
+envinject 
 
 USER root
 RUN apt-get install -y --no-install-recommends \
@@ -40,7 +43,8 @@ RUN apt-get install -y --no-install-recommends \
      python-pip \
      packagekit \
      build-essential \
-     python-setuptools
+     python-setuptools \
+     jq
 
 RUN pip install awscli
 
@@ -70,7 +74,7 @@ RUN echo -e "8403addf88ab4874007e1c1e80a0025bf2550a37\c" > ${ANDROID_HOME}/licen
 
 RUN sed -i '2 a\
 if [ "$DOCKER_SWARM_MANAGER" != "" ]; then \
-ssh -4 -NL localhost:2374:/var/run/docker.sock -i /run/secrets/its-bsa-dev-us-west-2-key-pair.pem docker@$DOCKER_SWARM_MANAGER & \
+ssh -4 -NL localhost:2374:/var/run/docker.sock -i /run/secrets/its-bsa-dev-1-us-west-2.pem docker@$DOCKER_SWARM_MANAGER & \
 fi' /usr/local/bin/jenkins.sh
 
 USER jenkins
