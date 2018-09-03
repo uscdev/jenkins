@@ -45,5 +45,5 @@ secrets:
     external: true
   swarm-key-pair.pem:
     external: true
-  its-bsa-dev-1-us-west-2.pem
+  its-bsa-dev-1-us-west-2.pem:
     external: true
