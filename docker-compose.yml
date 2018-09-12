@@ -14,7 +14,7 @@ services:
     networks:
       - proxy
     volumes:
-      - jenkins-home:/var/jenkins_home
+      - jenkins-data:/var/jenkins_home
     secrets:
       - saml-key.jks
       - swarm-key-pair.pem
@@ -38,7 +38,7 @@ networks:
     external:
       name: proxy
 volumes:
-  jenkins-home:
+  jenkins-data:
     external: true
 secrets:
   saml-key.jks:
