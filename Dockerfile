@@ -18,7 +18,7 @@ docker-traceability \
 docker-workflow \
 docker-plugin docker-build-step saml \
 file-operations nexus-artifact-uploader \
-job-dsl envinject simple-theme \
+job-dsl simple-theme \
 email-ext \
 matrix-auth matrix-project antisamy-markup-formatter script-security \
 pipeline-utility-steps \
@@ -28,7 +28,9 @@ config-file-provider \
 workflow-aggregator \
 publish-over-ssh \
 swarm \
-amazon-ecr
+amazon-ecr \
+jquery \
+envinject 
 
 USER root
 RUN apt-get install -y --no-install-recommends \
@@ -41,7 +43,8 @@ RUN apt-get install -y --no-install-recommends \
      python-pip \
      packagekit \
      build-essential \
-     python-setuptools
+     python-setuptools \
+     jq
 
 RUN pip install awscli
 
@@ -70,9 +73,9 @@ RUN echo -e "79120722343a6f314e0719f863036c702b0e6b2a\n84831b9409646a918e30573ba
 RUN echo -e "8403addf88ab4874007e1c1e80a0025bf2550a37\c" > ${ANDROID_HOME}/licenses/intel-android-sysimage-license
 
 RUN sed -i '2 a\
-if [ "$DOCKER_SWARM_MANAGER" != "" ]; then \
-ssh -4 -NL localhost:2374:/var/run/docker.sock -i /run/secrets/its-bsa-dev-us-west-2-key-pair.pem docker@$DOCKER_SWARM_MANAGER & \
-fi' /usr/local/bin/jenkins.sh
+if [ "$DOCKER_SWARM_MANAGER" != "" ]; then \n\
+ssh -4 -NL localhost:2374:/var/run/docker.sock -i /run/secrets/its-bsa-dev-1-us-west-2.pem -o StrictHostKeyChecking=no docker@$DOCKER_SWARM_MANAGER & \n\
+fi\n' /usr/local/bin/jenkins.sh
 
 USER jenkins
 
