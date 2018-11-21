@@ -13,7 +13,7 @@ services:
     networks:
       - proxy
     volumes:
-      - ${USC_LOCAL_DIR}/jenkins:/var/jenkins_home
+      - ${USC_BLOCK_DIR:-/docker-nfs}/jenkins:/var/jenkins_home
     secrets:
       - ca.pem
       - cert.pem
