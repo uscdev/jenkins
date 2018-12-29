@@ -24,7 +24,7 @@ services:
       labels:
         - com.df.notify=true
         - com.df.distribute=true
-        - com.df.serviceDomain=jenkins.docker.usc.edu
+        - com.df.serviceDomain=${JENKINS_SUB_DOMAIN:-jenkins}.${DOMAIN_NAME:-docker.usc.edu}
         - com.df.httpsOnly=true
         - com.df.port=8080
         - com.df.xForwardedProto=true
