@@ -74,7 +74,7 @@ RUN echo -e "8403addf88ab4874007e1c1e80a0025bf2550a37\c" > ${ANDROID_HOME}/licen
 
 RUN sed -i '2 a\
 if [ "$DOCKER_SWARM_MANAGER" != "" ]; then \n\
-ssh -4 -NL localhost:2374:/var/run/docker.sock -i /run/secrets/its-bsa-dev-1-us-west-2.pem -o StrictHostKeyChecking=no docker@$DOCKER_SWARM_MANAGER & \n\
+ssh -4 -NL localhost:2374:/var/run/docker.sock -i /run/secrets/swarm-key-pair.pem -o StrictHostKeyChecking=no docker@$DOCKER_SWARM_MANAGER & \n\
 fi\n' /usr/local/bin/jenkins.sh
 
 USER jenkins
