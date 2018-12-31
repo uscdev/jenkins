@@ -38,8 +38,7 @@ services:
           - node.hostname==${NODE01:-dcorley-swarm-node01.usc.edu}
 networks:
   proxy:
-    external:
-      name: proxy
+    external: true
 secrets:
   ca.pem:
     external: true
