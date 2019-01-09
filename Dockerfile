@@ -30,7 +30,8 @@ publish-over-ssh \
 swarm \
 amazon-ecr \
 jquery \
-envinject 
+envinject \
+sonar
 
 USER root
 RUN apt-get install -y --no-install-recommends \
