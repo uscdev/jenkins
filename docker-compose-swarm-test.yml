@@ -1,0 +1,52 @@
+version: '3.7'
+services:
+  jenkins:
+    image: uscdev/jenkins
+    ports:
+      - 50000:50000
+      - 8080:8080
+    environment:
+      - JAVA_OPTS=-Duser.timezone=${TZ:-America/Los_Angeles}
+#      - DOCKER_HOST=tcp://${NODE00:-dcorley-swarm-mgr01.usc.edu}:${NODEMGRPORT:-2376}
+#      - DOCKER_TLS_VERIFY=1
+#      - DOCKER_CERT_PATH=/run/secrets
+    networks:
+      - proxy
+    volumes:
+#      - ${USC_BLOCK_DIR:-/docker-nfs}/jenkins:/var/jenkins_home
+      - /docker-nfs/jenkins:/var/jenkins_home
+    secrets:
+#      - ca.pem
+#      - cert.pem
+#      - key.pem
+      - saml-key.jks
+    deploy:
+      replicas: 1
+      labels:
+        - com.df.notify=true
+        - com.df.distribute=true
+        - com.df.serviceDomain=${JENKINS_SUB_DOMAIN:-jenkins}.${DOMAIN_NAME:-docker.usc.edu}
+        - com.df.timeoutServer=120
+        - com.df.httpsOnly=true
+        - com.df.port=8080
+        - com.df.xForwardedProto=true
+      update_config:
+        parallelism: 1
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+#      placement:
+#        constraints:
+#          - node.hostname==swarm-test1.usc.edu
+networks:
+  proxy:
+    external: true
+secrets:
+#  ca.pem:
+#    external: true
+#  cert.pem:
+#    external: true
+#  key.pem:
+#    external: true
+  saml-key.jks:
+    external: true
