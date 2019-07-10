@@ -7,7 +7,7 @@ RUN apt-get update && apt-get -y upgrade
 RUN mv /etc/localtime /etc/localtime-old && ln -sf /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
 USER jenkins
 
-purposefully break the build to test notifications.
+purposefully break the build to test notifications
 
 RUN /usr/local/bin/install-plugins.sh \
 mailer cloudbees-folder timestamper \
